@@ -2,13 +2,13 @@
 
 I work at the seams between systems. Most of what I fix lives in generated code, where two toolchains have quietly disagreed for a year and the compiler is the first one to mention it.
 
-Applied mathematics before software. Based in Berlin.
+I studied applied mathematics before I wrote software for a living, and I work from Berlin.
 
 ## Upstream, 2026
 
 **Escaping comment markers in Kotlin and Swift docstrings.** [mozilla/uniffi-rs#2966](https://github.com/mozilla/uniffi-rs/pull/2966), merged August 2026.
 
-Rust doc comments were emitted straight into generated `/** ... */` blocks with no escaping. A `*/` in the source closed the docstring early. A `/*` opened one that never closed and swallowed the rest of the file. Nested markers compile fine in both languages, so only the unbalanced cases broke, which is part of why it lasted as long as it did. Closed [#2411](https://github.com/mozilla/uniffi-rs/issues/2411), open since January 2025.
+Rust doc comments were emitted straight into generated `/** ... */` blocks with no escaping, so a `*/` in the source closed the docstring early and a `/*` opened one that never closed, taking the rest of the file with it. Both languages allow nested `/* ... */`, so it only broke when a marker had no partner, which is part of why it lasted as long as it did. Closed [#2411](https://github.com/mozilla/uniffi-rs/issues/2411), open since January 2025.
 
 **Building Qdrant on architectures with no SIMD backend.** [qdrant/qdrant#10209](https://github.com/qdrant/qdrant/pull/10209), merged August 2026.
 
@@ -16,7 +16,7 @@ Rust doc comments were emitted straight into generated `/** ... */` blocks with 
 
 **The same defect in the TypeScript generator, where it does more damage.** [jhugman/uniffi-bindgen-react-native#438](https://github.com/jhugman/uniffi-bindgen-react-native/pull/438), merged August 2026.
 
-TypeScript has no nested block comments, so one stray `*/` is unrecoverable rather than merely awkward. This surfaced while I was generating Node bindings for `qdrant-edge-ffi`: 401 TypeScript errors spread across a 12,000 line generated file, all of them traceable to a single docstring.
+TypeScript has no nested block comments, so one stray `*/` runs to the end of the file. This surfaced while I was generating Node bindings for `qdrant-edge-ffi`: 401 TypeScript errors spread across a 12,000 line generated file, all of them traceable to a single docstring.
 
 **A documentation fix that a migration ate.** [prisma/web](https://github.com/prisma/web), open.
 
@@ -30,7 +30,7 @@ The Cloudflare deployment page still told you to set `node_compat = true`, which
 
 ### [vaultbench](https://github.com/liamiepops/vaultbench)
 
-Five embedded vector search engines benchmarked at personal knowledge base scale, on real markdown pulled from four public documentation repositories, at 1k, 10k and 100k chunks. Embeddings are computed once and loaded byte identically into every engine. Recall is measured against exact brute force ground truth, so the numbers are not estimates of an estimate.
+Five embedded vector search engines benchmarked at personal knowledge base scale, on real markdown pulled from four public documentation repositories, at 1k, 10k and 100k chunks. Embeddings are computed once and loaded byte identically into every engine. Recall is measured against exact brute force ground truth.
 
 What came out of it:
 
@@ -44,10 +44,10 @@ The failure mode I went in expecting, search then discard under a filter, showed
 
 ### [portcall](https://github.com/liamiepops/portcall)
 
-Prisma 7 probed across Node, Bun, Deno and Cloudflare `workerd`. All four pass all eleven steps with byte identical output, which turns out to be close to guaranteed once you notice that all four load the same WASM query compiler. The genuine difference is at the edges: the Workers target needs a second generator block, because the default client imports `node:process` at module scope.
+Prisma 7 probed across Node, Bun, Deno and Cloudflare `workerd`. All four pass all eleven steps with byte identical output, which turns out to be close to guaranteed once you notice that all four load the same WASM query compiler. The one real difference is the Workers target, which needs a second generator block, because the default client imports `node:process` at module scope.
 
 This is also where the stale Prisma documentation above came from.
 
 ### Langsammm
 
-A Firefox extension that slows browser audio down without turning everyone into a chipmunk. Real time pitch shifting with formant preservation in the Web Audio API: playback slows, and the spectral envelope is corrected back to where it started, so voices keep the character you recognise them by. Live spectral visualisation, integration with YouTube, YouTube Music, SoundCloud and Bandcamp, no network calls, no telemetry, all state local. Passed Mozilla add-on review and published on addons.mozilla.org.
+A Firefox extension that slows browser audio down without turning everyone into a chipmunk. Real time pitch shifting with formant preservation in the Web Audio API: playback slows, and the spectral envelope is corrected back to where it started, so voices keep the character you recognise them by. It draws the spectrum live while it runs, and it hooks into YouTube, YouTube Music, SoundCloud and Bandcamp. Everything stays on the machine, with no network calls and no telemetry. Passed Mozilla add-on review and published on addons.mozilla.org.
