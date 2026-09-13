@@ -14,9 +14,9 @@ Software engineer in Berlin. Most of my recent work is on language bindings and 
 
 **[geothermal-thermo-hydraulic-model](https://github.com/liamiepops/geothermal-thermo-hydraulic-model)**
 
-Five coupled models in Python covering coolant-loop heat export, quench fracturing, drilling-thermal optimisation, hole stability under cooling and breakout from the ground reaction curve. They run axisymmetric and quasi-steady, solve as boundary-value problems across the coupled heat and stress fields, and take their water properties from IAPWS-95.
+Five coupled models in Python covering coolant-loop heat export, quench fracturing, drilling-thermal optimisation, hole stability under cooling and breakout from the ground reaction curve. The models are low-dimensional and mostly quasi-steady, solving as boundary-value problems across the coupled heat and stress fields, with water properties from IAPWS-95.
 
-Conduction caps a closed-loop well near 3 to 4 MW. Cold-quench drilling survives only where the crust is extensional and the stresses are low, and past a certain depth the rock closes the hole through stress anisotropy before heat becomes the problem. Scoring four European provinces against all five models puts Pannonian Basin and Larderello through, passes Upper Rhine Graben on conditions, and rules out United Downs, where anisotropy exceeds the fracture gradient. These are order-of-magnitude models, built to find which constraint binds.
+Run against four European provinces, it clears Pannonian Basin and Larderello, passes Upper Rhine Graben on conditions, and rules out United Downs, where anisotropy exceeds the fracture gradient. Those verdicts come from the limits the models find: conduction caps a closed-loop well near 3 to 4 MW, cold-quench spallation works only in low-stress extensional crust below the brittle-ductile transition, and elsewhere lowers the cutting energy without breaking the rock, and past a certain depth the rock closes the hole through stress anisotropy before heat becomes the problem. These are order-of-magnitude models, built to find where a site becomes economically viable.
 
 **[Langsammm](https://github.com/liamiepops/Langsammm)**
 
